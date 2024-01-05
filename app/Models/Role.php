@@ -9,5 +9,21 @@ class Role extends Model
 {
     use HasFactory;
 
+    const ROLES = [
+        "Admin" => "Admin",
+        "Teacher" => "Teacher",
+        "Student" => "Student",
+    ];
+
     protected $fillable = ['title'];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class);
+    }
 }
