@@ -47,4 +47,21 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class);
     }
+
+    public function getRedirectRouteName()
+    {
+        $roles = $this->roles;
+
+        if ($roles->contains('title', Role::ROLES['Admin'])) {
+            return 'admin.dashboard';
+        }
+
+        if ($roles->contains('title', Role::ROLES['Teacher'])) {
+            return 'teacher.dashboard';
+        }
+
+        if ($roles->contains('title', Role::ROLES['Student'])) {
+            return 'student.dashboard';
+        }
+    }
 }
