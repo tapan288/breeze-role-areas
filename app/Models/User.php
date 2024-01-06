@@ -64,4 +64,9 @@ class User extends Authenticatable
             return 'student.dashboard';
         }
     }
+
+    public function hasRole(string $role): bool
+    {
+        return $this->roles()->where('title', $role)->exists();
+    }
 }
