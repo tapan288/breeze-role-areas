@@ -3,6 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 
-Route::get('/admin/dashboard', DashboardController::class)
-    ->middleware(['auth', 'verified', 'role:admin'])
-    ->name('admin.dashboard');
+Route::redirect('admin', 'admin/dashboard');
+
+Route::group([
+    'middleware' => ['auth', 'verified', 'role:admin'],
+    'prefix' => 'admin',
+    'as' => 'admin.'
+], function () {
+    Route::get('dashboard', DashboardController::class)
+        ->name('dashboard');
+});
