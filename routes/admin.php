@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin;
 
 Route::redirect('admin', 'admin/dashboard');
 
@@ -10,6 +10,6 @@ Route::group([
     'prefix' => 'admin',
     'as' => 'admin.'
 ], function () {
-    Route::get('dashboard', DashboardController::class)
+    Route::get('dashboard', Admin\DashboardController::class)
         ->name('dashboard');
 });

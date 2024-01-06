@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Student\DashboardController;
+use App\Http\Controllers\Student;
 
 Route::redirect('student', 'student/dashboard');
 
@@ -10,6 +10,6 @@ Route::group([
     'prefix' => 'student',
     'as' => 'student.'
 ], function () {
-    Route::get('dashboard', DashboardController::class)
+    Route::get('dashboard', Student\DashboardController::class)
         ->name('dashboard');
 });
